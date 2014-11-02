@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2014 | 心情隨筆</title>
+  <title>Tag: Spark | 心情隨筆</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description">
 <meta property="og:type" content="website">
 <meta property="og:title" content="心情隨筆">
-<meta property="og:url" content="http://chocofish56.github.io/archives/2014/">
+<meta property="og:url" content="http://chocofish56.github.io/tags/Spark/">
 <meta property="og:site_name" content="心情隨筆">
 <meta property="og:description">
 <meta name="twitter:card" content="summary">
@@ -182,61 +182,6 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">log4j.rootCategory=WARN, console</div></pre></td></tr></table></figure>
 
 <p>When you re-open the shell, you should see less output.</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-xen-utils-error" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/11/02/xen-utils-error/" class="article-date">
-  	<time datetime="2014-11-02T07:12:07.000Z" itemprop="datePublished">Nov 2 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ubuntu/">Ubuntu</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Xen/">Xen</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/virtuoso/">virtuoso</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/11/02/xen-utils-error/">xen虛擬機的xen-utils錯誤</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>這是一台xen虛擬機安裝Apache Spark遇到的問題</p>
-<p>DomU版本 : Ubuntu 12.04.4 LTS<br>Memory   : 1024 MB</p>
-<p>錯誤訊息:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">正在設定 xen-utils-common (<span class="number">4.1</span>.<span class="number">2</span>-<span class="number">1</span>ubuntu1) ...</div><div class="line"> * Starting Xen daemons                                                  [fail]</div><div class="line">invoke-rc.d: initscript xend, action <span class="string">"start"</span> failed.</div><div class="line">dpkg：在處理 xen-utils-common (--configure) 時發生錯誤：</div><div class="line"> 子程序 installed post-installation script 傳回了錯誤退出狀態 <span class="number">255</span></div><div class="line">dpkg：因相依問題，不能設定 xen-utils-<span class="number">4.1</span>：</div><div class="line"> xen-utils-<span class="number">4.1</span> 相依於 xen-utils-common (&gt;= <span class="number">3.4</span>.<span class="number">2</span>-<span class="number">4</span>)﹔然而：</div><div class="line">  xen-utils-common 套件尚未設定。</div><div class="line">dpkg：在處理 xen-utils-<span class="number">4.1</span> (--configure) 時發生錯誤：</div><div class="line"> 相依問題 - 保留為未設定</div><div class="line">正在設定 python-pycurl (<span class="number">7.19</span>.<span class="number">0</span>-<span class="number">4</span>ubuntu3) ...</div><div class="line">No apport report written because the error message indicates its a followup error from a previous failure.</div><div class="line">                          正在設定 python-software-properties (<span class="number">0.82</span>.<span class="number">7.7</span>) ...</div><div class="line">在處理時有錯誤發生：</div><div class="line"> xen-utils-common</div><div class="line"> xen-utils-<span class="number">4.1</span></div><div class="line">E: Sub-process /usr/bin/dpkg returned an error code (<span class="number">1</span>)</div></pre></td></tr></table></figure>
-
-<p>解決辦法如下:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> mv /var/lib/dpkg/info /var/lib/dpkg/info.bak  <span class="comment">#將現有info文件夾更名</span></div><div class="line"><span class="built_in">sudo</span> mkdir /var/lib/dpkg/info</div><div class="line"><span class="built_in">sudo</span> apt-get update</div><div class="line"><span class="built_in">sudo</span> apt-get <span class="operator">-f</span> install</div></pre></td></tr></table></figure>
-
-<p>搞定</p>
 
       
     </div>

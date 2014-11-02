@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2014 | 心情隨筆</title>
+  <title>Tag: virtuoso | 心情隨筆</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description">
 <meta property="og:type" content="website">
 <meta property="og:title" content="心情隨筆">
-<meta property="og:url" content="http://chocofish56.github.io/archives/2014/">
+<meta property="og:url" content="http://chocofish56.github.io/tags/virtuoso/">
 <meta property="og:site_name" content="心情隨筆">
 <meta property="og:description">
 <meta name="twitter:card" content="summary">
@@ -114,90 +114,6 @@
 	</div>
 </nav>
       
-  
-    <article id="post-install-apache-spark-on-ubuntu" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/11/02/install-apache-spark-on-ubuntu/" class="article-date">
-  	<time datetime="2014-11-02T08:10:10.000Z" itemprop="datePublished">Nov 2 2014</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spark/">Spark</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ubuntu/">Ubuntu</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/11/02/install-apache-spark-on-ubuntu/">在Ubuntu 12.04 LTS安裝Apache Spark</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Dependencies_:">Dependencies :</h2>
-<p>Oracle JDK 7</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> apt-get install python-software-properties  </div><div class="line"><span class="built_in">sudo</span> add-apt-repository ppa:webupd8team/java  </div><div class="line"><span class="built_in">sudo</span> apt-get update  </div><div class="line"><span class="built_in">sudo</span> apt-get install oracle-jdk7-installer</div></pre></td></tr></table></figure>
-
-<p>Git</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> apt-get install git</div></pre></td></tr></table></figure>
-
-<h2 id="Get_spark-1-1-0-tgz_:">Get spark-1.1.0.tgz :</h2>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget http://d3kbcqa49mib13.cloudfront.net/spark-<span class="number">1.1</span>.<span class="number">0</span>.tgz</div></pre></td></tr></table></figure>
-
-<h2 id="Install_Spark_:">Install Spark :</h2>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">tar -xvf spark-<span class="number">1.1</span>.<span class="number">0</span>.tgz</div><div class="line"><span class="built_in">cd</span> spark-<span class="number">1.1</span>.<span class="number">0</span>/</div><div class="line">sbt/sbt assembly</div></pre></td></tr></table></figure>
-
-<h2 id="Run_Example_:">Run Example :</h2>
-<p>SparkPi</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./bin/run-example SparkPi <span class="number">10</span></div></pre></td></tr></table></figure>
-
-<p>SparkPi in python</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./bin/spark-submit examples/src/main/python/pi.py <span class="number">10</span></div></pre></td></tr></table></figure>
-
-<p>PS.若執行 sbt/sbt assembly 出現錯誤</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">user@ubuntu:~/spark-<span class="number">1.1</span>.<span class="number">0</span>$ sbt/sbt assembly</div><div class="line">Attempting to fetch sbt</div><div class="line"><span class="comment">######################################################################## 100.0%</span></div><div class="line">Launching sbt from sbt/sbt-launch-<span class="number">0.13</span>.<span class="number">5</span>.jar</div><div class="line">Error occurred during initialization of VM</div><div class="line">Could not reserve enough space <span class="keyword">for</span> object heap</div><div class="line">Error: Could not create the Java Virtual Machine.</div><div class="line">Error: A fatal exception has occurred. Program will exit.</div></pre></td></tr></table></figure>
-
-<p>解決辦法:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vim ./sbt/sbt-launch-lib.bash</div></pre></td></tr></table></figure>
-
-<p>在<code>get_mem_opts()</code>中，將2048更改為1024</p>
-<h2 id="spark_小設定:">spark 小設定:</h2>
-<p>make a copy of conf/log4j.properties.template called conf/log4j.properties </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cp ./conf/log4j.properties.template ./conf/log4j.properties</div></pre></td></tr></table></figure>
-
-<p>find the following line:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">log4j.rootCategory=INFO, console</div></pre></td></tr></table></figure>
-
-<p>Then lower the log level so that we only show WARN message and above by changing it to the following:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">log4j.rootCategory=WARN, console</div></pre></td></tr></table></figure>
-
-<p>When you re-open the shell, you should see less output.</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
   
     <article id="post-xen-utils-error" class="article article-type-post" itemscope itemprop="blogPost">
   
